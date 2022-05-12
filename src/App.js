@@ -6,6 +6,7 @@ import Login from './Login';
 import Register from './Register';
 import Reset from './Reset';
 import Dashboard from './Dashboard';
+import UpdateSteps from './UpdateSteps';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route exact path='/register' element={<Register />} />
           <Route exact path='/reset' element={<Reset />} />
           <Route exact path='/dashboard' element={<Dashboard />} />
+          <Route exact path='/update' element={<UpdateSteps />} />
         </Routes>
       </Router>
     </div>
