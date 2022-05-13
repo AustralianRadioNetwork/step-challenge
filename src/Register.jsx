@@ -15,8 +15,14 @@ const Register = ()  => {
   const [suburb, setSuburb] = useState('');
   const [date, setDate] = useState('');
   const [region, setRegion] = useState('');
+  const [group, setGroup] = useState('');
   const [user, loading, error] = useAuthState(auth);
 
+  const onChangeGroup = (event) => {
+    setGroup(event.target.value);
+  }
+
+  const regions = ['Ballarat', 'Rockhampton', 'Bendigo', 'Riverland']
 
   const navigate = useNavigate();
 
@@ -42,24 +48,24 @@ const Register = ()  => {
           placeholder='Full Name'
         />
         <input
-          type='text'
+          type='email'
           className='register_textBox'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder='E-mail Address'
         />
         <input
-          type='email'
+          type='tel'
           className='register_textBox'
           value={phone}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setPhone(e.target.value)}
           placeholder='Phone'
         />
         <input
           type='text'
           className='register_textBox'
           value={suburb}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setSuburb(e.target.value)}
           placeholder='Suburb'
         />
 
@@ -67,7 +73,7 @@ const Register = ()  => {
           type='date'
           className='register_textBox'
           value={date}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setDate(e.target.value)}
           placeholder=''
         />
 
@@ -75,13 +81,32 @@ const Register = ()  => {
           type='date'
           className='register_textBox'
           value={region}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setRegion(e.target.value)}
           placeholder='Phone'
         >
-        <option selected>none</option>
-        <option></option>
+          <option selected>-not set-</option>
+        {regions.map( item => {
+            return (
+              <option value={item}>{item}</option>
+            )
+        })}
         </select>
+
+        <div onChange={onChangeGroup}>
+          <p>Group</p>
+          <input type="radio" value="none" name="gender" /> None
+          <input type="radio" value="select" name="gender" /> Select
+          <input type="radio" value="create" name="gender" /> Create
+        </div>
         
+        {group === 'select' ? <div>hey</div> : '' }
+        {group === 'create' ?  <div> <input
+          type='input'
+          className='register_textBox'
+          value= ''
+          onChange= ''
+          placeholder=''
+        /></div> : '' } 
         <input
           type='password'
           className='register_textBox'
