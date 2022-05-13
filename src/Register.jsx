@@ -11,6 +11,10 @@ const Register = ()  => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [suburb, setSuburb] = useState('');
+  const [date, setDate] = useState('');
+  const [region, setRegion] = useState('');
   const [user, loading, error] = useAuthState(auth);
 
 
@@ -44,6 +48,40 @@ const Register = ()  => {
           onChange={(e) => setEmail(e.target.value)}
           placeholder='E-mail Address'
         />
+        <input
+          type='email'
+          className='register_textBox'
+          value={phone}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder='Phone'
+        />
+        <input
+          type='text'
+          className='register_textBox'
+          value={suburb}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder='Suburb'
+        />
+
+        <input
+          type='date'
+          className='register_textBox'
+          value={date}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder=''
+        />
+
+        <select
+          type='date'
+          className='register_textBox'
+          value={region}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder='Phone'
+        >
+        <option selected>none</option>
+        <option></option>
+        </select>
+        
         <input
           type='password'
           className='register_textBox'

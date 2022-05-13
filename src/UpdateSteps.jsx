@@ -20,18 +20,27 @@ import { update, ref, set, getDatabase } from "firebase/database";
 const UpdateSteps = () => {
   const [user, loading, error] = useAuthState(auth);
 
-  const [steps, setStep] = useState("");
+  const [steps, setStep] = useState([]);
 
   const [logSteps, setLogStep] = useState("");
 
   const navigate = useNavigate();
 
+  // steps for each day of feb
+  const stepsArray = [];
+
+  // fetch the current date steps
   const fetchSteps = async () => {
     try {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
       const doc = await getDocs(q);
       const data = doc.docs[0].data();
-      setStep(data.totalSteps);
+    
+      data.breakdown.forEach((day) => {
+        stepsArray.push(day);
+      });
+
+      setStep(stepsArray);
     } catch (err) {
       console.error(err);
       alert("An error occured while fetching user data");
@@ -63,8 +72,7 @@ const UpdateSteps = () => {
       const data = res.docs[0].data();
 
       let newDataSet = [];
-      console.log(data.breakdown);
-
+     
       if (data.breakdown.length !== 0) {
         data.breakdown.forEach((entry) => {
           if (entry.date === currentDate) {
@@ -77,24 +85,28 @@ const UpdateSteps = () => {
             });
           } else {
             //pushing all the old entries first
-          newDataSet.push(entry);
+            newDataSet.push(entry);
 
-          // remove data once pushed
-          res.forEach(async (user) => {
-            const getUser = doc(db, "users", user.id);
-            await updateDoc(getUser, {
-              breakdown: arrayRemove(entry),
+            // remove data once pushed
+            res.forEach(async (user) => {
+              const getUser = doc(db, "users", user.id);
+              await updateDoc(getUser, {
+                breakdown: arrayRemove(entry),
+              });
             });
-          });
           }
         });
 
         const updatedSteps = parseInt(newSteps);
 
         newDataSet.push({ date: currentDate, steps: updatedSteps });
-
+        // flushing the old state
         setStep(updatedSteps);
       }
+
+      // pushing the new dataset into the db
+      // calculate the total steps till the date
+      let totalStepsTillDate = 0;
 
       newDataSet.forEach((entry) => {
         res.forEach(async (user) => {
@@ -103,9 +115,20 @@ const UpdateSteps = () => {
             breakdown: arrayUnion(entry),
           });
         });
+
+        totalStepsTillDate += entry.steps;
+      });
+      
+      //setting total steps
+      res.forEach(async (user) => {
+        const getUser = doc(db, "users", user.id);
+        await updateDoc(getUser, {
+          totalSteps: totalStepsTillDate,
+        });
       });
 
-      navigate("/dashboard");
+      // once updated navigate back to home page
+      // navigate("/dashboard");
     } catch (err) {
       console.error(err);
       alert("An error occured while fetching user data");
@@ -114,19 +137,34 @@ const UpdateSteps = () => {
 
   return (
     <div className='update-steps-container'>
-      <p>
-        Current Steps as of {currentDate} is <strong>{steps}</strong>
-      </p>
-      <input
-        type='text'
-        className='update_textBox'
-        value={logSteps}
-        onChange={(e) => setLogStep(e.target.value)}
-        placeholder='log setps'
-      />
-      <button className='update_btn' onClick={() => updateSteps(logSteps)}>
-        Update
-      </button>
+      <ul>
+        {steps.map((item) => {
+          return (
+            <li key={item.date}>
+              {item.date}
+              <br></br>
+              <p>{item.steps}</p>
+              {currentDate === item.date && (
+                <div>
+                  <input
+                    type='text'
+                    className='update_textBox'
+                    value={logSteps}
+                    onChange={(e) => setLogStep(e.target.value)}
+                    placeholder='log setps'
+                  />
+                  <button
+                    className='update_btn'
+                    onClick={() => updateSteps(logSteps)}
+                  >
+                    Update
+                  </button>
+                </div>
+              )}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };

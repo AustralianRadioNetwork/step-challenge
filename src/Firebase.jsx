@@ -54,9 +54,13 @@ const signInWithGoogle = async () => {
       await addDoc(collection(db, 'users'), {
         uid: user.uid,
         name: user.displayName,
+        dob: null,
+        suburb: null,
+        subscription: false,
         authProvider: 'google',
         totalSteps: 0,
         group: null,
+        region:null,
         breakdown : {
           date: currentDate,
           steps: 0
@@ -81,17 +85,20 @@ const logInWithEmailAndPassword = async (email, password) => {
 };
 
 // register with email and password
-const registerWithEmailAndPassword = async (name, email, password) => {
+const registerWithEmailAndPassword = async (name, email, password, region, location, group, dob, subscription) => {
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(res)
       const user = res.user;
       await addDoc(collection(db, 'users'), {
         uid: user.uid,
         name: name,
         authProvider: 'local',
         totalSteps: 0,
-        group: null,
+        region: region,
+        group: group,
+        dob: dob,
+        suburb: location,
+        subscription: subscription,
         breakdown : {
           date: currentDate,
           steps: 0
