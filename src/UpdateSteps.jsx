@@ -4,7 +4,17 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 // firebase services
 import { auth, db, logout } from "./Firebase";
-import { query, collection, getDocs, where, updateDoc, doc } from "firebase/firestore";
+import {
+  query,
+  collection,
+  getDocs,
+  where,
+  updateDoc,
+  doc,
+  push,
+  arrayUnion,
+  arrayRemove,
+} from "firebase/firestore";
 import { update, ref, set, getDatabase } from "firebase/database";
 
 const UpdateSteps = () => {
@@ -15,8 +25,6 @@ const UpdateSteps = () => {
   const [logSteps, setLogStep] = useState("");
 
   const navigate = useNavigate();
-
-  const dbRef = ref(getDatabase());
 
   const fetchSteps = async () => {
     try {
@@ -37,30 +45,66 @@ const UpdateSteps = () => {
   }, [user, loading]);
 
   const currentDate =
-    new Date().getDay() +
+    new Date().getFullYear() +
     "-" +
-    new Date().toLocaleString("en-au", { month: "long" }) +
-    "," +
-    new Date().getFullYear();
+    ("0" + (new Date().getMonth() + 1)).slice(-2) +
+    "-" +
+    ("0" + new Date().getDate()).slice(-2);
+
+  const mapData =
+    new Date().toLocaleString("en-au", { month: "short" }) +
+    +("0" + new Date().getDate()).slice(-2);
 
   const updateSteps = async (newSteps) => {
     // updateData base
     try {
-        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-        const res = await getDocs(q);
-        const data = res.docs[0].data();
-        const updatedSteps = parseInt(data.totalSteps) + parseInt(newSteps);
+      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+      const res = await getDocs(q);
+      const data = res.docs[0].data();
 
+      let newDataSet = [];
+      console.log(data.breakdown);
 
-        res.forEach( async (user) => {
-            const getUser = doc(db, 'users', user.id);
-            await updateDoc(getUser, {
-             totalSteps: updatedSteps
+      if (data.breakdown.length !== 0) {
+        data.breakdown.forEach((entry) => {
+          if (entry.date === currentDate) {
+            // remove data once pushed
+            res.forEach(async (user) => {
+              const getUser = doc(db, "users", user.id);
+              await updateDoc(getUser, {
+                breakdown: arrayRemove(entry),
+              });
             });
-        });
-    
+          } else {
+            //pushing all the old entries first
+          newDataSet.push(entry);
 
-      setStep(updatedSteps);
+          // remove data once pushed
+          res.forEach(async (user) => {
+            const getUser = doc(db, "users", user.id);
+            await updateDoc(getUser, {
+              breakdown: arrayRemove(entry),
+            });
+          });
+          }
+        });
+
+        const updatedSteps = parseInt(newSteps);
+
+        newDataSet.push({ date: currentDate, steps: updatedSteps });
+
+        setStep(updatedSteps);
+      }
+
+      newDataSet.forEach((entry) => {
+        res.forEach(async (user) => {
+          const getUser = doc(db, "users", user.id);
+          await updateDoc(getUser, {
+            breakdown: arrayUnion(entry),
+          });
+        });
+      });
+
       navigate("/dashboard");
     } catch (err) {
       console.error(err);

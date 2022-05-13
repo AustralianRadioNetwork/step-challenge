@@ -23,6 +23,10 @@ const firebaseConfig = {
     measurementId: 'G-0M2KBRMHHG'
 };
 
+// current Date 
+const currentDate = new Date().getFullYear() + "-" +("0" + (new Date().getMonth() + 1)).slice(-2)
++ '-' +("0" + new Date().getDate()).slice(-2);
+
 // installizing firebase app
 const app = initializeApp(firebaseConfig);
 
@@ -51,6 +55,12 @@ const signInWithGoogle = async () => {
         uid: user.uid,
         name: user.displayName,
         authProvider: 'google',
+        totalSteps: 0,
+        group: null,
+        breakdown : {
+          date: currentDate,
+          steps: 0
+        },
         email: user.email,
       });
     }
@@ -74,13 +84,19 @@ const logInWithEmailAndPassword = async (email, password) => {
 const registerWithEmailAndPassword = async (name, email, password) => {
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(res)
       const user = res.user;
       await addDoc(collection(db, 'users'), {
         uid: user.uid,
-        name,
-        totalSteps: 0,
+        name: name,
         authProvider: 'local',
-        email,
+        totalSteps: 0,
+        group: null,
+        breakdown : {
+          date: currentDate,
+          steps: 0
+        },
+        email: user.email,
       });
     } catch (err) {
       console.error(err);
