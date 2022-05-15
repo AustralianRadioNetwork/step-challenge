@@ -61,10 +61,10 @@ const signInWithGoogle = async () => {
         totalSteps: 0,
         group: null,
         region:null,
-        breakdown : {
+        breakdown : [{
           date: currentDate,
           steps: 0
-        },
+        }],
         email: user.email,
       });
     }
@@ -99,10 +99,10 @@ const registerWithEmailAndPassword = async (name, email, password, region, locat
         dob: dob,
         suburb: location,
         subscription: subscription,
-        breakdown : {
+        breakdown : [ {
           date: currentDate,
           steps: 0
-        },
+        }],
         email: user.email,
       });
     } catch (err) {

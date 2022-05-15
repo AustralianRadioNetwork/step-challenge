@@ -16,6 +16,7 @@ const Register = ()  => {
   const [date, setDate] = useState('');
   const [region, setRegion] = useState('');
   const [group, setGroup] = useState('');
+  const [subscription, setSubscription] = useState('false');
   const [user, loading, error] = useAuthState(auth);
 
   const onChangeGroup = (event) => {
@@ -28,7 +29,7 @@ const Register = ()  => {
 
   const register = () => {
     if (!name) alert('Please enter name');
-    registerWithEmailAndPassword(name, email, password);
+    registerWithEmailAndPassword(name, email, password, region, suburb, group, date, subscription);
   };
 
   useEffect(() => {
@@ -84,7 +85,7 @@ const Register = ()  => {
           onChange={(e) => setRegion(e.target.value)}
           placeholder='Phone'
         >
-          <option selected>-not set-</option>
+          <option defaultValue>-not set-</option>
         {regions.map( item => {
             return (
               <option value={item}>{item}</option>
@@ -103,9 +104,9 @@ const Register = ()  => {
         {group === 'create' ?  <div> <input
           type='input'
           className='register_textBox'
-          value= ''
-          onChange= ''
-          placeholder=''
+          value= {group}
+          onChange= {(e) => setGroup(e.target.value)}
+          placeholder='Create'
         /></div> : '' } 
         <input
           type='password'
@@ -114,6 +115,14 @@ const Register = ()  => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder='Password'
         />
+        <input
+          type='checkbox'
+          id='subscription'
+          value= 'true'
+          onChange={(e) => setSubscription(e.target.value)}
+          placeholder='Password'
+        />
+        <label for="subscription">Subscribe to email?</label>
         <button className='register_btn' onClick={register}>
           Register
         </button>
