@@ -1,0 +1,26 @@
+.update-steps-container {
+    margin: 10px 20px;
+
+   .list {
+        padding: 0;
+    }
+
+   .update_btn {
+        border-style: solid;
+        border-top-width: 2px;
+        border-right-width: 2px;
+        border-left-width: 2px;
+        border-bottom-width: 2px;
+        color: #54c7e1;
+        border-color: #54c7e1;
+        background-color: rgba(255,255,255,0);
+        border-radius: 999px;
+        padding-top: 20px;
+        padding-right: 40px;
+        padding-bottom: 20px;
+        padding-left: 40px;
+        text-transform: capitalize;
+        font-weight: 600;
+        font-size: 15px;
+    }
+}

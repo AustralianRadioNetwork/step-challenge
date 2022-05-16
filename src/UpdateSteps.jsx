@@ -3,8 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Accordion from "./Component/Accordion";
 
+// Styles
+import './UpdateSteps.scss';
+
 // firebase services
-import { auth, db, logout } from "./Firebase";
+import { auth, db } from "./Firebase";
 import {
   query,
   collection,
@@ -16,7 +19,6 @@ import {
   arrayUnion,
   arrayRemove,
 } from "firebase/firestore";
-import { update, ref, set, getDatabase } from "firebase/database";
 
 const UpdateSteps = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -52,14 +54,13 @@ const UpdateSteps = () => {
     if (loading) return;
     if (!user) return navigate("/");
     fetchSteps();
-  }, [user, loading]);
+  }, [user, loading, loggedSteps]);
 
   const getData = (val) => {
-
-    console.log(val)
+    console.log(val);
 
     let newStepsArray = [];
-    
+
     steps.forEach((entry) => {
       if (val.date === entry.date) {
         newStepsArray.push({ date: val.date, steps: val.steps });
@@ -69,30 +70,11 @@ const UpdateSteps = () => {
       }
     });
 
-    setLoggedStep(newStepsArray)
-  };
-
-  const handleChange = (event) => {
-    let date = event.target.name;
-    setLoggedStep(event.target.value);
-
-    let newStepsArray = [];
-
-    steps.forEach((entry) => {
-      if (date === entry.date) {
-        newStepsArray.push({ date: date, steps: loggedSteps });
-      }
-      // push remaning data
-      newStepsArray.push(entry);
-    });
-
-    setStep(newStepsArray);
-    console.log(steps);
+    setLoggedStep(newStepsArray);
   };
 
   const updateSteps = async (newSteps) => {
-
-    console.log(newSteps)
+    console.log(newSteps);
 
     // update Database
     try {
@@ -103,7 +85,7 @@ const UpdateSteps = () => {
       let newDataSet = newSteps;
 
       let totalStepsTillDate = 0;
-      
+
       data.breakdown.forEach((entry) => {
         res.forEach(async (user) => {
           const getUser = doc(db, "users", user.id);
@@ -142,7 +124,7 @@ const UpdateSteps = () => {
 
   return (
     <div className='update-steps-container'>
-      <ul>
+      <ul className="list">
         {steps.map((item) => {
           return (
             <Accordion
@@ -154,10 +136,17 @@ const UpdateSteps = () => {
           );
         })}
       </ul>
-      <div>
-        <button className='update_btn' onClick={() => updateSteps(loggedSteps)}>
-          submit
-        </button>
+      <div className="button-container">
+        {loggedSteps.length !== 0 ? (
+          <button
+            className='update_btn'
+            onClick={() => updateSteps(loggedSteps)}
+          >
+            submit
+          </button>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
