@@ -7,6 +7,7 @@ import Register from './Register';
 import Reset from './Reset';
 import Dashboard from './Dashboard';
 import UpdateSteps from './UpdateSteps';
+import Region from './Component/Region'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route exact path='/reset' element={<Reset />} />
           <Route exact path='/dashboard' element={<Dashboard />} />
           <Route exact path='/update' element={<UpdateSteps />} />
+          <Route exact path='/region/:region' element={<Region/>} />
         </Routes>
       </Router>
     </div>

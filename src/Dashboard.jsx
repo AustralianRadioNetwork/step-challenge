@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import './Dashboard.scss';
 
@@ -54,7 +54,7 @@ const Dashboard = () => {
         Logged in as
          <div>{name}</div>
          <div>{user?.email}</div>
-         <div> Your Region: <p onClick={() => regionData(region)}>{region}</p></div>
+         <div> Your Region: <Link to={`/region/${region}`}>{region}</Link></div>
          <div>Your Group: <p href='/'>{group}</p></div>
          <button className='dashboard_btn' onClick={logout}>
           Logout
