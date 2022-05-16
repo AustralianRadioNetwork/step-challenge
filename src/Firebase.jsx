@@ -36,8 +36,69 @@ const auth = getAuth(app);
 // connect database
 const db = getFirestore(app);
 
+// step breakdown for Feburary 
+const breakdown = [
+  {date: '2022-02-01',
+    steps: 0},
+  {date: '2022-02-02',
+    steps: 0},
+  {date: '2022-02-03',
+    steps: 0},
+  {date: '2022-02-04',
+    steps: 0},
+  {date: '2022-02-05',
+    steps: 0},
+  {date: '2022-02-06',
+    steps: 0},
+  {date: '2022-02-07',
+    steps: 0},
+  {date: '2022-02-08',
+    steps: 0},
+  {date: '2022-02-09',
+    steps: 0},
+  {date: '2022-02-10',
+    steps: 0},
+  {date: '2022-02-11',
+    steps: 0},
+  {date: '2022-02-12',
+    steps: 0},
+  {date: '2022-02-13',
+    steps: 0},
+  {date: '2022-02-14',
+    steps: 0},
+  {date: '2022-02-15',
+    steps: 0},
+  {date: '2022-02-16',
+    steps: 0},
+  {date: '2022-02-17',
+    steps: 0},
+  {date: '2022-02-18',
+    steps: 0},
+  {date: '2022-02-19',
+    steps: 0},
+  {date: '2022-02-20',
+    steps: 0},
+  {date: '2022-02-21',
+    steps: 0},
+  {date: '2022-02-22',
+    steps: 0},
+  {date: '2022-02-23',
+    steps: 0},
+  {date: '2022-02-24',
+    steps: 0},
+  {date: '2022-02-25',
+    steps: 0},
+  {date: '2022-02-26',
+    steps: 0},
+  {date: '2022-02-27',
+    steps: 0},
+  {date: '2022-02-28',
+    steps: 0},
+]
+
 // google authentication
 const googleProvider = new GoogleAuthProvider();
+
 
 const signInWithGoogle = async () => {
   try {
@@ -61,10 +122,7 @@ const signInWithGoogle = async () => {
         totalSteps: 0,
         group: null,
         region:null,
-        breakdown : [{
-          date: currentDate,
-          steps: 0
-        }],
+        breakdown : breakdown,
         email: user.email,
       });
     }
@@ -99,10 +157,7 @@ const registerWithEmailAndPassword = async (name, email, password, region, locat
         dob: dob,
         suburb: location,
         subscription: subscription,
-        breakdown : [ {
-          date: currentDate,
-          steps: 0
-        }],
+        breakdown : breakdown,
         email: user.email,
       });
     } catch (err) {
