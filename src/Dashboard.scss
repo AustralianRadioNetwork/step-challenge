@@ -4,6 +4,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .current_status_card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background-color: #54C7E1;
+        padding: 25px;
+
+        .title {
+            color: white;
+        }
+
+        .stats {
+            color: #3a3a3a;
+        }
+    }
 }
 .dashboard_container {
     display: flex;
