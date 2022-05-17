@@ -8,6 +8,7 @@ import Reset from './Reset';
 import Dashboard from './Dashboard';
 import UpdateSteps from './UpdateSteps';
 import Region from './Component/Region'
+import Group from './Component/Group';
 import Edit from './Edit';
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
           <Route exact path='/dashboard' element={<Dashboard />} />
           <Route exact path='/update' element={<UpdateSteps />} />
           <Route exact path='/region/:region' element={<Region/>} />
+          <Route exact path='/group/:group' element={<Group/>} />
         </Routes>
       </Router>
     </div>

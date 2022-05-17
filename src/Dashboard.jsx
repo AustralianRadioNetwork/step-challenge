@@ -86,7 +86,7 @@ const Dashboard = () => {
               Your Region: <Link to={`/region/${region}`}>{region}</Link>
             </p>
             <p>
-              Your Group: <a href='/'>{group}</a>
+              Your Group: <Link to={`/group/${group}`}>{group}</Link>
             </p>
           </div>
         </div>
