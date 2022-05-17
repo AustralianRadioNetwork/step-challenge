@@ -1,41 +1,84 @@
 .dashboard {
-    height: 100vh;
     width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 100vh;
+    padding: 50px 0px 50px 0px;
 
-    .current_status_card {
-        position: relative;
+    .dashboard_container {
         display: flex;
-        flex-direction: column;
-        background-color: #54C7E1;
-        padding: 25px;
+        flex-direction: row;
+        text-align: center;
+        padding: 30px;
 
-        .title {
-            color: white;
+        .user_info {
+            width: 50%;
+            text-align: left;
+            color: #3a3a3a;
+
+            .welcome {
+                line-height: 1.4;
+                h2 {
+                    margin-top: 0;
+                    font-size: 1.5rem;
+                }
+
+                .link,  a{
+                    color: #54C7E1;
+                }
+            }
+
+            .membership {
+                margin-top: 20px;
+                line-height: 1.4;
+                h2 {
+                    font-size: 1.5rem;
+                }
+                a{
+                    color: #54C7E1;
+                }
+            }
         }
 
-        .stats {
-            color: #3a3a3a;
+        .current_status {
+            width: 50%;
+            text-align: left;
+
+            .card {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                background-color: #54C7E1;
+                padding: 25px;
+        
+                .title {
+                    color: white;
+                }
+        
+                .stats {
+                    color: #3a3a3a;
+                }
+
+                .update_btn {
+                    background-color: rgba(255,255,255,0);
+                    color: #FFFFFF;
+                    border-style: solid;
+                    border-width: 2px 2px 2px 2px;
+                    border-color: #FFFFFF;
+                    border-radius: 999px 999px 999px 999px;
+                    padding-top: 20px;
+                    padding-right: 40px;
+                    padding-bottom: 20px;
+                    padding-left: 40px;
+                    font-size: 18px;
+                    font-family: inherit;
+                    font-weight: 600;
+                    line-height: 1;
+
+                     &:hover{
+                        background-color: #2A2A2A;
+                        border-color: #2A2A2A;
+                     }
+                }
+            }
         }
     }
-}
-.dashboard_container {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    background-color: #dcdcdc;
-    padding: 30px;
-}
-.dashboard_btn {
-    padding: 10px;
-    font-size: 18px;
-    margin-top: 10px;
-    border: none;
-    color: white;
-    background-color: black;
-}
-.dashboard div {
-    margin-top: 7px;
 }
