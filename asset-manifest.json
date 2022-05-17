@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/step-challenge/static/css/main.e57d07cf.css",
+    "main.js": "/step-challenge/static/js/main.012df47c.js",
+    "index.html": "/step-challenge/index.html",
+    "main.e57d07cf.css.map": "/step-challenge/static/css/main.e57d07cf.css.map",
+    "main.012df47c.js.map": "/step-challenge/static/js/main.012df47c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e57d07cf.css",
+    "static/js/main.012df47c.js"
+  ]
+}
