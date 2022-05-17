@@ -74,8 +74,6 @@ const UpdateSteps = () => {
   };
 
   const updateSteps = async (newSteps) => {
-    console.log(newSteps);
-
     // update Database
     try {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));

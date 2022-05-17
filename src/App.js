@@ -8,6 +8,7 @@ import Reset from './Reset';
 import Dashboard from './Dashboard';
 import UpdateSteps from './UpdateSteps';
 import Region from './Component/Region'
+import Edit from './Edit';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route exact path='/' element={<Login />} />
           <Route exact path='/register' element={<Register />} />
           <Route exact path='/reset' element={<Reset />} />
+          <Route path='dashboard/edit-profile' element={<Edit />}/>
           <Route exact path='/dashboard' element={<Dashboard />} />
           <Route exact path='/update' element={<UpdateSteps />} />
           <Route exact path='/region/:region' element={<Region/>} />

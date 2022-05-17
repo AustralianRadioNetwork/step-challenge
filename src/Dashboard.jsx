@@ -6,7 +6,6 @@ import './Dashboard.scss';
 
 import { auth, db, logout } from './Firebase';
 import { query, collection, getDocs, where } from 'firebase/firestore';
-import { getDatabase, ref, child, push, update } from "firebase/database";
 
 const Dashboard = () => {
 
@@ -44,8 +43,8 @@ const Dashboard = () => {
    navigate('/update')
   };
 
-  const regionData = (region) => {
-    navigate(`/region/${region}`)
+  const edit = () => {
+    navigate(`edit-profile`)
   }
 
   return (
@@ -58,6 +57,9 @@ const Dashboard = () => {
          <div>Your Group: <p href='/'>{group}</p></div>
          <button className='dashboard_btn' onClick={logout}>
           Logout
+         </button>
+         <button className='dashboard_btn' onClick={edit}>
+          Edit
          </button>
        </div>
        
