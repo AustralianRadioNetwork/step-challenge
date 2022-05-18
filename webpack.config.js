@@ -17,12 +17,21 @@ module.exports = {
                         presets: ['@babel/preset-env', '@babel/preset-react']
                     }
                 }
-            }
+            },
+            {
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: "html-loader"
+                    }
+                ]
+            },
         ]
     },
     plugins: [
-      new HtmlWebpackPlugin({
-        template: path.join(__dirname, "src", "index.html"),
-      }),
+        new HtmlWebpackPlugin({
+            template: "./src/index.html",
+            filename: "./index.html"
+        }),
     ],
 }
