@@ -64,11 +64,11 @@ const Dashboard = () => {
             </p>
 
             <a onClick={logout}>
-              <img /> Log out
+              Log out
             </a>
             <br />
             <a href='/dashboard/edit-profile'>
-              <img /> Edit Profile
+              Edit Profile
             </a>
           </div>
           <div className='membership'>

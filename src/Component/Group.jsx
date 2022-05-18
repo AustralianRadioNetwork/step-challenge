@@ -26,7 +26,7 @@ const Group = () => {
 
           data.forEach( user => {
             let result = user.data();
-            res.push({name: result.name, steps: result.totalSteps})
+            res.push({name: result.fullName, steps: result.totalSteps})
             total += result.totalSteps
           })
         } catch (err) {

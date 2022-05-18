@@ -269,12 +269,12 @@ const Register = () => {
       <button className='register_btn' onClick={register}>
         Register
       </button>
-      <button
+      {/* <button
         className='register_btn register_google'
         onClick={signInWithGoogle}
       >
         Register with Google
-      </button>
+      </button> */}
     </div>
   );
 };

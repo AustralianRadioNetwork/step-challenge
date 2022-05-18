@@ -72,23 +72,40 @@
                 }
             }
         }
-        
-
-        .register_btn {
-            padding: 10px;
-            font-size: 18px;
-            margin-bottom: 10px;
-            border: none;
-            color: white;
-            background-color: black;
-        }
-    
         .register_google {
             background-color: #4285f4;
         }
     
         .register div {
             margin-top: 7px;
+        }
+    }
+
+    .register_btn {
+        margin-left: 45px;
+        border-style: solid;
+        border-top-width: 2px;
+        border-right-width: 2px;
+        border-left-width: 2px;
+        border-bottom-width: 2px;
+        color: #54c7e1;
+        border-color: #54c7e1;
+        background-color: rgba(255,255,255,0);
+        border-radius: 999px;
+        padding-top: 20px;
+        padding-right: 40px;
+        padding-bottom: 20px;
+        padding-left: 40px;
+        font-family: inherit;
+        font-weight: 600;
+        line-height: 1;
+
+        &:hover {
+          
+            color: #ffffff;
+            background-color: #204d74;
+            border-color: #122b40;
+            
         }
     }
 }
