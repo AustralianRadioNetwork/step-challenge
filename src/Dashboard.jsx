@@ -67,7 +67,7 @@ const Dashboard = () => {
               <img /> Log out
             </a>
             <br />
-            <a href='/edit'>
+            <a href='/dashboard/edit-profile'>
               <img /> Edit Profile
             </a>
           </div>
@@ -76,7 +76,7 @@ const Dashboard = () => {
             <p>
               See stats and leaderboards for your region and group selected when
               joining the challenge. If you didn’t select a group, you can do
-              this from the <a href='/edit'>Edit Profile</a> page at anytime.
+              this from the <a href='/dashboard/edit-profile'>Edit Profile</a> page at anytime.
             </p>
             <p>
               Please note you can’t change your region or group during the

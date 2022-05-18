@@ -145,20 +145,21 @@ const logInWithEmailAndPassword = async (email, password) => {
 };
 
 // register with email and password
-const registerWithEmailAndPassword = async (firstName, lastName, fullName, email, password, region, location, group, dob, subscription) => {
+const registerWithEmailAndPassword = async (firstName, lastName, fullName, email, phone, password, region, location, group, dob, subscription) => {
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       const user = res.user;
       await addDoc(collection(db, 'users'), {
         uid: user.uid,
         firstName: firstName,
-        lastname: lastName,
+        lastName: lastName,
         fullName: fullName,
         authProvider: 'local',
         totalSteps: 0,
         region: region,
         group: group,
         dob: dob,
+        phone: phone,
         suburb: location,
         subscription: subscription,
         breakdown : breakdown,

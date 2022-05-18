@@ -46,6 +46,7 @@ const Register = () => {
       lastName,
       fullName,
       email,
+      phone,
       password,
       region,
       suburb,
