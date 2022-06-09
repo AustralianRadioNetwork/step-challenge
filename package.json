@@ -18,6 +18,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-dashboard": "npm run build && move build build-dashboard && npx gulp",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "webpack serve",

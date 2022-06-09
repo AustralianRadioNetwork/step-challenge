@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useAuthState} from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { auth, sendPasswordReset } from "./Firebase";
 
@@ -11,11 +11,11 @@ const Reset = () => {
 
   const [email, setEmail] = useState("");
   const [user, loading, error] = useAuthState(auth);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     if (loading) return;
-    if (user) navigate("/dashboard");
+    if (user) window.location.href = "/dashboard";
   }, [user, loading]);
 
   return (
@@ -35,7 +35,7 @@ const Reset = () => {
           Send password reset email
         </button>
         <div>
-          Don't have an account? <Link to='/register'>Register</Link> now.
+          Don't have an account? <a href='/register'>Register</a> now.
         </div>
       </div>
     </div>

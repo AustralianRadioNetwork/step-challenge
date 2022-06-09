@@ -7,12 +7,16 @@ import { query, collection, getDocs, where } from 'firebase/firestore';
 import './Region.scss';
 
 const Region = () => {
-  const region = useParams();
+  
+  const path = window.location.pathname;
+
+  const region = path.replace('/regions/', '');
 
   const [regionData, setRegionData] = useState([]);
   const [regionalTotal, setRegionalTotal] = useState(null);
   const [overallTotal, setOverallTotal] = useState(null);
   const [regionalGroupData, setRegionalGroupData] = useState([]);
+
 
   const fetchRegionalUserData = async () => {
     let res = [];
@@ -22,7 +26,7 @@ const Region = () => {
     try {
       const q = query(
         collection(db, 'users'),
-        where('region', '==', region.region)
+        where('region', '==', region)
       );
       const doc = await getDocs(q);
       const data = doc.docs;
@@ -99,7 +103,7 @@ const Region = () => {
                 return (
                   <li className='list_item' key={regionData.indexOf(item)}>
                     <h4>{regionData.indexOf(item) + 1}. {item.name}</h4>
-                    <span class="separator"></span>
+                    <span className="separator"></span>
                     <p>{item.steps}</p>
                   </li>
                 );

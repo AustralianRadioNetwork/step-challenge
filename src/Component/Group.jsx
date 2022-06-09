@@ -8,7 +8,9 @@ import './Group.scss'
 
 const Group = () => {
 
-    const group = useParams();
+    const path = window.location.pathname;
+
+    const group = path.replace('/groups/', '');
 
     const [groupData, setGroupData] = useState([])
     const [groupTotal, setGroupTotoal] = useState(null);
@@ -20,7 +22,7 @@ const Group = () => {
         let total = 0;
 
         try {
-          const q = query(collection(db, 'users'), where( 'group', '==' , group.group));
+          const q = query(collection(db, 'users'), where( 'group', '==' , group));
           const doc = await getDocs(q);
           const data = doc.docs;
 

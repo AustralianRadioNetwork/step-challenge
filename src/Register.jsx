@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+// import { Link, useNavigate } from "react-router-dom";
 import {
   auth,
   registerWithEmailAndPassword,
@@ -35,7 +35,7 @@ const Register = () => {
 
   const regions = ["Ballarat", "Rockhampton", "Bendigo", "Riverland"];
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const register = () => {
     if (!firstName) alert("Please enter name");
@@ -83,7 +83,7 @@ const Register = () => {
 
   useEffect(() => {
     if (loading) return;
-    if (user) navigate("/dashboard", { replace: true });
+    if (user) window.location.href = "/dashboard";
     fetchGroupData();
   }, [user, loading]);
 

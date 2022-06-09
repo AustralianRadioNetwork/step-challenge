@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Accordion from "./Component/Accordion";
 
@@ -27,7 +27,7 @@ const UpdateSteps = () => {
 
   const [loggedSteps, setLoggedStep] = useState([]);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // steps for each day of feb
   const stepsArray = [];
@@ -52,7 +52,7 @@ const UpdateSteps = () => {
 
   useEffect(() => {
     if (loading) return;
-    if (!user) return navigate("/");
+    if (!user) return window.location.href = "/";
     fetchSteps();
   }, [user, loading, loggedSteps]);
 
@@ -113,7 +113,7 @@ const UpdateSteps = () => {
       });
 
       // once updated navigate back to home page
-      navigate("/dashboard");
+      window.location.href = "/dashboard";
     } catch (err) {
       console.error(err);
       alert("An error occured while fetching user data");

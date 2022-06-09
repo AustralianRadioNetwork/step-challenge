@@ -10,6 +10,8 @@
 
 # production
 /build
+/build-Login
+/build-login-minified
 
 # misc
 .DS_Store

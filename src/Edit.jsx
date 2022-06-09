@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+// import { Link, useNavigate } from "react-router-dom";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db, sendPasswordReset } from "./Firebase";
@@ -16,7 +16,7 @@ import {
 import "./Edit.scss";
 
 const Edit = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [user, loading, error] = useAuthState(auth);
   const [firstName, setFirstName] = useState("");
@@ -77,11 +77,10 @@ const Edit = () => {
   };
 
   const resetPassowrd = () => {
-    navigate("/reset");
+    window.location.href = "/reset-password";
   };
 
-  const updateUserData = async (name, email, phone, group) => {
-    console.log(firstName, lastName, email, phone, group);
+  const updateUserData = async (firstName, lastName, email, phone, group) => {
     try {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
       const res = await getDocs(q);
@@ -102,12 +101,12 @@ const Edit = () => {
       alert("An error occured while updating user data");
     }
 
-    return navigate("/");
+    return window.location.href = "/";
   };
 
   useEffect(() => {
     if (loading) return;
-    if (!user) return navigate("/");
+    if (!user) return window.location.href = "/";
     fetchUserData();
     fetchGroupData();
   }, [user, loading]);

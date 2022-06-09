@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+// import { Link, useNavigate } from "react-router-dom";
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from "./Firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "./Login.scss";
@@ -9,14 +9,14 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     if (loading) {
       // maybe trigger a loading screen
       return;
     }
-    if (user) navigate("/dashboard");
+    if (user) window.location.href = "/dashboard";
   }, [user, loading]);
 
   return (
@@ -59,7 +59,7 @@ const Login = () => {
             Login with Google
           </button> */}
           <div className="reset_link">
-            <Link to='/reset'>Lost your password?</Link>
+            <a href='/reset'>Lost your password?</a>
           </div>
         </div>
       </div>
