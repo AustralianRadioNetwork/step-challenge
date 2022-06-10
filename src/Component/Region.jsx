@@ -8,9 +8,11 @@ import './Region.scss';
 
 const Region = () => {
   
-  const path = window.location.pathname;
+  const path = window.location.search;
 
-  const region = path.replace('/regions/', '');
+  const region = path.replace('?s=', '');
+
+  console.log(path)
 
   const [regionData, setRegionData] = useState([]);
   const [regionalTotal, setRegionalTotal] = useState(null);
@@ -71,66 +73,71 @@ const Region = () => {
     fetchOverallTotal();
   }, []);
 
-  return (
-    <div className='region_container'>
-      <div className='content'>
-        <div className='card_container'>
-        <div className='card'>
-        <div className='card_blue'>
+  if (region){
+    return (
+      <div className='region_container'>
+        <div className='content'>
+          <div className='card_container'>
+          <div className='card'>
+          <div className='card_blue'>
+              <div className='content'>
+              <h2 className='title'>{region} Total Steps</h2>
+              <h1>{regionalTotal}</h1>
+              </div>
+            </div>
+          </div>
+           <div className='card'>
+           <div className='card_grey'>
+               <div className='content'>
+               <h2 className='title'>Overall Total Steps</h2>
+              <h1>{overallTotal}</h1>
+               </div>
+              
+            </div>
+           </div>
+           
+          </div>
+  
+          <div className='region_leaderboard'>
             <div className='content'>
-            <h2 className='title'>{region.region} total Steps</h2>
-            <h1>{regionalTotal}</h1>
+              <h4>{region.region} Leaderboard</h4>
+              <ul className='list_container'>
+                {regionData.map((item) => {
+                  return (
+                    <li className='list_item' key={regionData.indexOf(item)}>
+                      <h4>{regionData.indexOf(item) + 1}. {item.name}</h4>
+                      <span className="separator"></span>
+                      <p>{item.steps}</p>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+  
+          <div className='group_leaderboard'>
+            <div className='content'>
+              <h4>{region} Group Leaderboard</h4>
+              <ul className='list_container'>
+                {regionalGroupData.map((item) => {
+                  return (
+                    <li className='list_item' key={regionalGroupData.indexOf(item)}>
+                      <h4>{regionalGroupData.indexOf(item) + 1}. {item.name}</h4>
+                      <span className="separator"></span>
+                      <p>{item.steps}</p>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
         </div>
-         <div className='card'>
-         <div className='card_grey'>
-             <div className='content'>
-             <h2 className='title'>Overall Total Steps</h2>
-            <h1>{overallTotal}</h1>
-             </div>
-            
-          </div>
-         </div>
-         
-        </div>
-
-        <div className='region_leaderboard'>
-          <div className='content'>
-            <h4>{region.region} Leaderboard</h4>
-            <ul className='list_container'>
-              {regionData.map((item) => {
-                return (
-                  <li className='list_item' key={regionData.indexOf(item)}>
-                    <h4>{regionData.indexOf(item) + 1}. {item.name}</h4>
-                    <span className="separator"></span>
-                    <p>{item.steps}</p>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </div>
-
-        <div className='group_leaderboard'>
-          <div className='content'>
-            <h4>{region.region} Group Leaderboard</h4>
-            <ul className='list_container'>
-              {regionalGroupData.map((item) => {
-                return (
-                  <li className='list_item' key={regionalGroupData.indexOf(item)}>
-                    <h4>{regionalGroupData.indexOf(item) + 1}. {item.name}</h4>
-                    <span class="separator"></span>
-                    <p>{item.steps}</p>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return 'todo';
+  }
+ 
 };
 
 export default Region;

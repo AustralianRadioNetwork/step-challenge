@@ -56,12 +56,12 @@ const Dashboard = () => {
           <div className='user_info'>
             <div className='welcome'>
               <h2>Welcome back {name}!</h2>
-              <p>
-                You’re currently logged in with the email {user.email}.
+              <div>
+                <p>You’re currently logged in with the email {user.email}.</p>
                 <div className='link' onClick={logout}>
                   Logout
                 </div>
-              </p>
+              </div>
               <p>
                 Welcome to the My Account page of the Feb Fit Step Challenge
                 website. Here you can log your steps, update your details or log
@@ -88,10 +88,10 @@ const Dashboard = () => {
                 challenge.
               </p>
               <p>
-                Your Region: <a href={`/regions/${region}`}>{region}</a>
+                Your Region: <a href={`/regions?s=${region}`}>{region}</a>
               </p>
               <p>
-                Your Group: <a href={`/groups/${group}`}>{group}</a>
+                Your Group: <a href={`/groups?=s${group}`}>{group}</a>
               </p>
             </div>
           </div>

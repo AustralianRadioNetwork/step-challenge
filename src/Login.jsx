@@ -11,12 +11,14 @@ const Login = () => {
 
   // const navigate = useNavigate();
 
+
   useEffect(() => {
     if (loading) {
       // maybe trigger a loading screen
       return;
     }
     if (user) window.location.href = "/dashboard";
+
   }, [user, loading]);
 
   return (
@@ -50,6 +52,7 @@ const Login = () => {
           </div>
 
           <button
+            type="submit"
             className='login_btn'
             onClick={() => logInWithEmailAndPassword(email, password)}
           >

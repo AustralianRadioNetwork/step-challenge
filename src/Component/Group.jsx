@@ -8,9 +8,9 @@ import './Group.scss'
 
 const Group = () => {
 
-    const path = window.location.pathname;
+    const path = window.location.search;
 
-    const group = path.replace('/groups/', '');
+    const group = path.replace('?g=', '');
 
     const [groupData, setGroupData] = useState([])
     const [groupTotal, setGroupTotoal] = useState(null);
@@ -64,7 +64,8 @@ const Group = () => {
         fetchOverallTotal();
     }, []);
 
-    return(
+    if(group) {
+      return(
         <div className="group_container">
              <div className='content'>
         <div className='card_container'>
@@ -109,6 +110,10 @@ const Group = () => {
       </div>
         </div>
     )
+    } else {
+      return 'todo';
+    }
+   
 }
 
 export default Group;
