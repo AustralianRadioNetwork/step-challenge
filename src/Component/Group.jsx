@@ -12,7 +12,7 @@ const Group = () => {
 
     const path = window.location.search;
 
-    const group = path.replace('?g=', '');
+    const group = path.replace('?s=', '');
 
     const [groupData, setGroupData] = useState([])
     const [groupTotal, setGroupTotoal] = useState(null);
@@ -30,6 +30,8 @@ const Group = () => {
 
           data.forEach( user => {
             let result = user.data();
+
+            console.log(result)
             res.push({name: result.fullName, steps: result.totalSteps})
             total += result.totalSteps
           })
@@ -67,7 +69,7 @@ const Group = () => {
     }, []);
 
     console.log(groupData)
-    
+
     if(group) {
       return(
         <div className="group_container">

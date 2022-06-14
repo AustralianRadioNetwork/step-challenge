@@ -109,11 +109,13 @@ const UpdateSteps = () => {
         const getUser = doc(db, "users", user.id);
         await updateDoc(getUser, {
           totalSteps: totalStepsTillDate,
+        }).then(() => {
+          // // once updated navigate back to home page
+          window.location.href = "/dashboard";
         });
       });
 
-      // once updated navigate back to home page
-      window.location.href = "/dashboard";
+  
     } catch (err) {
       console.error(err);
       alert("An error occured while fetching user data");
