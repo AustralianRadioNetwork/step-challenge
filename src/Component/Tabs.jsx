@@ -6,18 +6,18 @@ import './Tabs.scss';
 
 const Tabs = (tabs) => {
 
-    let tabData = tabs.tabs
-
-    console.log(tabs)
+    let tabData = tabs.tabs;
 
     const [activeTab, setActiveTab] = useState(tabData[0].label);
-
-    console.log(activeTab)
 
     const onClickTabItem  = (tab) => {
         setActiveTab(tab)
     }
 
+    const navigateRegion = (name) => {
+        window.location.href =  `?s=${name}`
+    }
+    
     return (
         <div className="tabs">
           <div className="tab-list">
@@ -41,7 +41,7 @@ const Tabs = (tabs) => {
                 {item.data.map((x) => {
                   return (
                     <li className='list_item' key={item.data.indexOf(x)}>
-                      <h4>{x.name}</h4>
+                      <h4 onClick={() => navigateRegion(x.name)}>{x.name}</h4>
                       <span className="separator"></span>
                       <p>{x.steps}</p>
                     </li>
