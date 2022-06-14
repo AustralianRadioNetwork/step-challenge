@@ -5,6 +5,7 @@ import { auth, db, logout } from '../Firebase';
 import { query, collection, getDocs, where } from 'firebase/firestore';
 
 import Pagination from './Pagination';
+import Tabs from './Tabs';
 
 import './Region.scss';
 
@@ -14,8 +15,6 @@ const Region = () => {
   const path = window.location.search;
 
   const region = path.replace('?s=', '');
-
-  console.log(path)
 
   const [regionData, setRegionData] = useState([]);
   const [regionalTotal, setRegionalTotal] = useState(null);
@@ -71,10 +70,30 @@ const Region = () => {
     setOverallTotal(total);
   };
 
+  const handleToggle = (event) => {
+
+    if(document.getElementById('toggle-item').style.display === 'none') {
+      document.getElementById('toggle-item').style.display = 'block';
+    } else {
+      document.getElementById('toggle-item').style.display = 'none';
+    }
+
+  }
+
   useEffect(() => {
     fetchRegionalUserData();
     fetchOverallTotal();
   }, []);
+
+  let x = [{label: 'nsw' , data: [{
+    name: 'Pranab', steps: 23244
+  },{
+    name: 'Pranab', steps: 23244
+  },{
+    name: 'Pranab', steps: 23244
+  }]},{label: 'place' ,  data: [{
+    name: 'Pranab', steps: 23244
+  }]}]
 
   if (region){
     return (
@@ -128,7 +147,19 @@ const Region = () => {
       </div>
     );
   } else {
-    return 'todo';
+    return (
+      <div className='tab-container'>
+        <div className='tab-info'>
+          <h1 className='title'>Total Steps by Regions</h1>
+          <p>Check back starting February 1 to view each region’s step count.</p>
+        </div>
+        <Tabs tabs={x} />
+        <div className='toggle-div'>
+          <h5 onClick={handleToggle} className='toggle'>Why isn't my region shown?</h5>
+          <p className='toggle-item' id='toggle-item'>The Feb Fit Step Challenge was created for selected regions around Australia, but anyone can take part! If your region isn’t available when joining, just choose the option ‘other’.</p>
+        </div>
+    </div>
+    )
   }
  
 };
