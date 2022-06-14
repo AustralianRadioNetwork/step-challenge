@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { auth, db, logout } from '../Firebase';
 import { query, collection, getDocs, where } from 'firebase/firestore';
 
+import Pagination from "./Pagination";
+
 import './Group.scss'
 
 const Group = () => {
@@ -64,6 +66,8 @@ const Group = () => {
         fetchOverallTotal();
     }, []);
 
+    console.log(groupData)
+    
     if(group) {
       return(
         <div className="group_container">
@@ -89,22 +93,10 @@ const Group = () => {
          
         </div>
 
-    
-
         <div className='group_leaderboard'>
           <div className='content'>
             <h4>{group.group} Group Leaderboard</h4>
-            <ul className='list_container'>
-              {groupData.map((item) => {
-                return (
-                  <li className='list_item' key={groupData.indexOf(item)}>
-                    <h4>{groupData.indexOf(item) + 1}. {item.name}</h4>
-                    <span class="separator"></span>
-                    <p>{item.steps}</p>
-                  </li>
-                );
-              })}
-            </ul>
+            <Pagination itemsPerPage={15} paginationData={groupData} />
           </div>
         </div>
       </div>

@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 
 import { auth, db, logout } from '../Firebase';
 import { query, collection, getDocs, where } from 'firebase/firestore';
 
+import Pagination from './Pagination';
+
 import './Region.scss';
+
 
 const Region = () => {
   
@@ -100,18 +103,8 @@ const Region = () => {
   
           <div className='region_leaderboard'>
             <div className='content'>
-              <h4>{region.region} Leaderboard</h4>
-              <ul className='list_container'>
-                {regionData.map((item) => {
-                  return (
-                    <li className='list_item' key={regionData.indexOf(item)}>
-                      <h4>{regionData.indexOf(item) + 1}. {item.name}</h4>
-                      <span className="separator"></span>
-                      <p>{item.steps}</p>
-                    </li>
-                  );
-                })}
-              </ul>
+              <h4>{region.region} Leaderboard</h4>         
+              <Pagination itemsPerPage={15} paginationData={regionData} />
             </div>
           </div>
   

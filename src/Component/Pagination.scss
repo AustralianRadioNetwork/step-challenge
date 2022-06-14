@@ -1,0 +1,27 @@
+.pagination {
+    display: flex;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+    list-style: none;
+
+    .previous, .next{
+        display: none;
+    }
+
+    li {
+        color: #337ab7;
+        font-size: .9em;
+        text-decoration: none!important;
+        padding: 0.15em 0.45em 0.2em;
+        line-height: 1.25;
+        border: 1px solid #dee2e6;
+        margin: 2px;
+    }
+
+    li.selected {
+        background-color: #337ab7;
+        border-color: #337ab7;
+        color: white;
+    }
+}
