@@ -5,6 +5,7 @@ import { auth, db, logout } from '../Firebase';
 import { query, collection, getDocs, where } from 'firebase/firestore';
 
 import Pagination from "./Pagination";
+import { numberWithCommas } from "../numberFormatter";
 
 import './Group.scss'
 
@@ -79,7 +80,7 @@ const Group = () => {
         <div className='card_blue'>
             <div className='content'>
             <h2 className='title'>{group.group} total Steps</h2>
-            <h1>{groupTotal}</h1>
+            <h1>{numberWithCommas(groupTotal)}</h1>
             </div>
           </div>
         </div>
@@ -87,7 +88,7 @@ const Group = () => {
          <div className='card_grey'>
              <div className='content'>
              <h2 className='title'>Overall Total Steps</h2>
-            <h1>{overallTotal}</h1>
+            <h1>{numberWithCommas(overallTotal)}</h1>
              </div>
             
           </div>

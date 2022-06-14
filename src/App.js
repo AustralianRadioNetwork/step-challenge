@@ -10,6 +10,7 @@ import UpdateSteps from './UpdateSteps';
 import Region from './Component/Region'
 import Group from './Component/Group';
 import Edit from './Edit';
+import Home from './Component/Homepage';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Route exact path='/groups' element={<Group/>} />
         </Routes>
       </Router>
+      {/* <Home /> */}
     </div>
   );
 }

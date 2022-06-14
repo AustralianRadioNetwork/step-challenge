@@ -26,8 +26,9 @@ const Accordion = ({ date, steps, sendData}) => {
       {isActive && (
         <div className='accordion-content'>
           <input
-            type='text'
+            type='number'
             className='update_textBox'
+            max='50000'
             value={newSteps}
             onChange={handleChange}
             name={date}

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 import ReactPaginate from 'react-paginate';
+import { numberWithCommas } from '../numberFormatter';
 
 // styles
 import './Pagination.scss';
@@ -15,7 +16,7 @@ const Pagination = ({itemsPerPage, paginationData}) => {
             <li className='list_item' key={currentItems.indexOf(item)}>
             <h4>{currentItems.indexOf(item) + 1}. {item.name}</h4>
             <span className="separator"></span>
-            <p>{item.steps}</p>
+            <p>{numberWithCommas(item.steps)}</p>
             </li>
         ))}
         </ul>

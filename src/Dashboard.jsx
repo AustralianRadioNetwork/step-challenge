@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 // import { Link, useNavigate } from "react-router-dom";
 
+import { numberWithCommas } from "./numberFormatter";
+
 import "./Dashboard.scss";
 
 import { auth, db, logout } from "./Firebase";
@@ -101,7 +103,7 @@ const Dashboard = () => {
                 <h2>Your Steps</h2>
               </div>
               <div className='stats'>
-                <h4>Current Steps: {steps}</h4>
+                <h4>Current Steps: {numberWithCommas(steps)}</h4>
                 <button
                   className='dashboard_btn update_btn'
                   onClick={updateSteps}

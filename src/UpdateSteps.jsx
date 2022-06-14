@@ -21,6 +21,7 @@ import {
 } from "firebase/firestore";
 
 const UpdateSteps = () => {
+  
   const [user, loading, error] = useAuthState(auth);
 
   const [steps, setStep] = useState([]);

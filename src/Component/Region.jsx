@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { auth, db, logout } from '../Firebase';
 import { query, collection, getDocs, where } from 'firebase/firestore';
+import { numberWithCommas } from '../numberFormatter';
 
 import Pagination from './Pagination';
 import Tabs from './Tabs';
@@ -104,7 +105,7 @@ const Region = () => {
           <div className='card_blue'>
               <div className='content'>
               <h2 className='title'>{region} Total Steps</h2>
-              <h1>{regionalTotal}</h1>
+              <h1>{numberWithCommas(regionalTotal)}</h1>
               </div>
             </div>
           </div>
@@ -112,7 +113,7 @@ const Region = () => {
            <div className='card_grey'>
                <div className='content'>
                <h2 className='title'>Overall Total Steps</h2>
-              <h1>{overallTotal}</h1>
+              <h1>{numberWithCommas(overallTotal)}</h1>
                </div>
               
             </div>
@@ -136,7 +137,7 @@ const Region = () => {
                     <li className='list_item' key={regionalGroupData.indexOf(item)}>
                       <h4>{regionalGroupData.indexOf(item) + 1}. {item.name}</h4>
                       <span className="separator"></span>
-                      <p>{item.steps}</p>
+                      <p>{numberWithCommas(item.steps)}</p>
                     </li>
                   );
                 })}
