@@ -34,7 +34,6 @@ const Tabs = (tabs) => {
           </div>
           <div className="tab-content">
             {tabData.map((item) => {
-                console.log(item)
               if (item.label !== activeTab) return undefined;
               return (
                 <ul className='list_container'>

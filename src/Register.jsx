@@ -33,7 +33,7 @@ const Register = () => {
     setGroupOption(event.target.value);
   };
 
-  const regions = ["Ballarat", "Rockhampton", "Bendigo", "Riverland"];
+  const regions = [{region:"Ballarat", state: 'VIC'},{region: "Rockhampton", state: 'QLD'}, {region:"Bendigo", state: 'VIC'},{region:"Riverland", state: 'SA'}];
 
   // const navigate = useNavigate();
 
@@ -177,7 +177,7 @@ const Register = () => {
             >
               <option defaultValue>-not set-</option>
               {regions.map((item) => {
-                return <option value={item}>{item}</option>;
+                return <option value={item.region+','+item.state}>{item.region}</option>;
               })}
             </select>
           </div>

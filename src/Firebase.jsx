@@ -146,6 +146,10 @@ const logInWithEmailAndPassword = async (email, password) => {
 
 // register with email and password
 const registerWithEmailAndPassword = async (firstName, lastName, fullName, email, phone, password, region, location, group, dob, subscription) => {
+
+  let regionName  = region.substr(0, region.indexOf(',')); 
+  let state = region.split(',')[1];
+
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       const user = res.user;
@@ -156,7 +160,8 @@ const registerWithEmailAndPassword = async (firstName, lastName, fullName, email
         fullName: fullName,
         authProvider: 'local',
         totalSteps: 0,
-        region: region,
+        region: regionName,
+        state: state,
         group: group,
         dob: dob,
         phone: phone,

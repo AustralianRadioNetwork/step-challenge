@@ -21,7 +21,11 @@ const Region = () => {
   const [regionalTotal, setRegionalTotal] = useState(null);
   const [overallTotal, setOverallTotal] = useState(null);
   const [regionalGroupData, setRegionalGroupData] = useState([]);
-
+  const [nswUserData, setNswUserData] = useState([]);
+  const [qldUserData, setQldUserData] = useState([]);
+  const [saUserData, setSaUserData] = useState([]);
+  const [vicUserData, setVicUserData] = useState([]);
+  const [ntUserData, setNtUserData] = useState([]);
 
   const fetchRegionalUserData = async () => {
     let res = [];
@@ -53,7 +57,15 @@ const Region = () => {
   };
 
   const fetchOverallTotal = async () => {
+
     let total = 0;
+
+    // states data
+    let nswUser = [];
+    let qldUser = [];
+    let vicUser = [];
+    let ntUser = [];
+    let saUser = [];
 
     try {
       const q = query(collection(db, 'users'));
@@ -63,11 +75,35 @@ const Region = () => {
       data.forEach((user) => {
         let result = user.data();
         total += result.totalSteps;
+
       });
+
+      data.forEach((user) => {
+        let result = user.data();
+
+        if (result.state === 'NSW') {
+          nswUser.push({name: result.fullName, steps: result.totalSteps})
+        } else if (result.state === 'QLD') {
+          qldUser.push({name: result.fullName, steps: result.totalSteps})
+        }else if (result.state === 'VIC') {
+          vicUser.push({name: result.fullName, steps: result.totalSteps})
+        }else if (result.state === 'NT') {
+          ntUser.push({name: result.fullName, steps: result.totalSteps})
+        } else {
+          saUser.push({name: result.fullName, steps: result.totalSteps})
+        }
+      })
+
     } catch (err) {
       console.error(err);
       alert('An error occured while fetching user data');
     }
+
+    setNswUserData(nswUser);
+    setNtUserData(ntUser);
+    setQldUserData(qldUser);
+    setVicUserData(vicUser);
+    setSaUserData(saUser);
     setOverallTotal(total);
   };
 
@@ -86,15 +122,14 @@ const Region = () => {
     fetchOverallTotal();
   }, []);
 
-  let x = [{label: 'nsw' , data: [{
-    name: 'Pranab', steps: 23244
-  },{
-    name: 'Pranab', steps: 23244
-  },{
-    name: 'Pranab', steps: 23244
-  }]},{label: 'place' ,  data: [{
-    name: 'Pranab', steps: 23244
-  }]}]
+  // region data 
+  let x = [
+    {label: 'NSW' , data: nswUserData},
+    {label: 'QLD' ,  data: qldUserData},
+    {label: 'VIC' ,  data: vicUserData},
+    {label: 'NT' ,  data: ntUserData},
+    {label: 'SA' ,  data: saUserData}
+  ]
 
   if (region){
     return (
@@ -105,7 +140,7 @@ const Region = () => {
           <div className='card_blue'>
               <div className='content'>
               <h2 className='title'>{region} Total Steps</h2>
-              <h1>{numberWithCommas(regionalTotal)}</h1>
+              <h1>{regionalTotal}</h1>
               </div>
             </div>
           </div>
@@ -113,7 +148,7 @@ const Region = () => {
            <div className='card_grey'>
                <div className='content'>
                <h2 className='title'>Overall Total Steps</h2>
-              <h1>{numberWithCommas(overallTotal)}</h1>
+              <h1>{overallTotal}</h1>
                </div>
               
             </div>
@@ -137,7 +172,7 @@ const Region = () => {
                     <li className='list_item' key={regionalGroupData.indexOf(item)}>
                       <h4>{regionalGroupData.indexOf(item) + 1}. {item.name}</h4>
                       <span className="separator"></span>
-                      <p>{numberWithCommas(item.steps)}</p>
+                      <p>{item.steps}</p>
                     </li>
                   );
                 })}
