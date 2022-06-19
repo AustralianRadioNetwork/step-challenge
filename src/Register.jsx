@@ -155,6 +155,8 @@ const Register = () => {
             <h3>Date of Birth</h3>
             <input
               type='date'
+              min= '1899-01-01'
+              onKeyDown={(e) => e.preventDefault()}
               className='register_textBox'
               value={date}
               onChange={(e) => setDate(e.target.value)}
@@ -169,7 +171,6 @@ const Register = () => {
               the ‘Other’ option.
             </p>
             <select
-              type='date'
               className='register_textBox'
               value={region}
               onChange={(e) => setRegion(e.target.value)}

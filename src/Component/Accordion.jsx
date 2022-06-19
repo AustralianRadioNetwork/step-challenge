@@ -4,15 +4,25 @@ import React, { useState } from "react";
 import "./Accordion.scss";
 
 const Accordion = ({ date, steps, sendData}) => {
+
+  // sets limit to user input 
+  const min = 0;
+  const max = 50000;
+
     
   const [isActive, setIsActive] = useState(false);
 
   const [newSteps, setNewSteps] = useState(steps);
 
   const handleChange = (e) => {
-      setNewSteps(e.target.value)
-      sendData({date:date, steps: parseInt(e.target.value)});
+
+    const newValue = Math.max(min, Math.min(max, Number(e.target.value)));
+
+    setNewSteps(newValue)
+    sendData({date:date, steps: parseInt(newValue)});
   }
+
+
 
   return (
     <div className='accordion-item'>
@@ -28,7 +38,6 @@ const Accordion = ({ date, steps, sendData}) => {
           <input
             type='number'
             className='update_textBox'
-            max='50000'
             value={newSteps}
             onChange={handleChange}
             name={date}

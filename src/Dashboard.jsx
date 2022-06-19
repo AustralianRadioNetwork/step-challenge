@@ -23,6 +23,7 @@ const Dashboard = () => {
     try {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
       const doc = await getDocs(q);
+      console.log(doc)
       const data = doc.docs[0].data();
       setName(data.firstName);
       setStep(data.totalSteps);
