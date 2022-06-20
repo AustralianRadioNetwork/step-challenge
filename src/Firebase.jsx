@@ -190,7 +190,7 @@ const sendPasswordReset = async (email) => {
 // logout
 const logout = () => {
   signOut(auth);
-  window.location.href = '/';
+  window.location.href = '/success';
 };
 
 // global functions

@@ -1,21 +1,22 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // Components
-import Login from './Login';
-import Register from './Register';
-import Reset from './Reset';
-import Dashboard from './Dashboard';
-import UpdateSteps from './UpdateSteps';
-import Region from './Component/Region'
-import Group from './Component/Group';
-import Edit from './Edit';
+// import Login from './Login';
+// import Register from './Register';
+// import Reset from './Reset';
+// import Dashboard from './Dashboard';
+// import UpdateSteps from './UpdateSteps';
+// import Region from './Component/Region'
+// import Group from './Component/Group';
+// import Edit from './Edit';
+// import SuccessPage from './Success';
 import Home from './Component/Homepage';
 
 const App = () => {
   return (
     <div className='app'>
-      <Router>
+      {/* <Router>
         <Routes>
           <Route exact path='/' element={<Login />} />
           <Route exact path='/register' element={<Register />} />
@@ -25,9 +26,10 @@ const App = () => {
           <Route exact path='/update' element={<UpdateSteps />} />
           <Route exact path='/regions' element={<Region/>} />
           <Route exact path='/groups' element={<Group/>} />
+          <Route exact path='/success' element={<SuccessPage/>} />
         </Routes>
-      </Router>
-      {/* <Home /> */}
+      </Router> */}
+      <Home />
     </div>
   );
 }
