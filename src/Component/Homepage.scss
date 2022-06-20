@@ -1,11 +1,18 @@
 .home-widget {
     padding: 25px 35px 25px 25px;
     background-color: #FFFFFF36;
-    color: #FFFFFF;
     border-radius: 3px 3px 3px 3px;
 
-    a {
+    h2 {
+        
         color: #FFFFFF;
-        text-decoration: none;
+        text-align: center;
+        margin: 0 auto;
+
+        a {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
     }
+
 }
