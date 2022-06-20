@@ -35,7 +35,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchOverallTotal();
-  }, []);
+  }, [overallTotal]);
 
   
   return (
