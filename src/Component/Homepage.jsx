@@ -40,7 +40,9 @@ const Home = () => {
   
   return (
     <div className='home-widget'>
-        <h2>{numberWithCommas(overallTotal)} steps tracked</h2>
+      <h2>
+        <a href='/regions'>{numberWithCommas(overallTotal)} steps tracked</a>
+      </h2>
     </div>
   );
 };
