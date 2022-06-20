@@ -123,16 +123,34 @@ const UpdateSteps = () => {
     }
   };
 
+
   return (
     <div className='update-steps-container'>
       <ul className="list">
         {steps.map((item) => {
+
+          // sets item as active if equals to current day of month    
+          let currentDate = new Date().getDate();
+          let itemDate = new Date(item.date).getDate();
+
+          if (currentDate === itemDate) {
+            return (
+              <Accordion
+                key={item.date}
+                date={item.date}
+                steps={item.steps}
+                sendData={getData}
+                itemState={true}
+              />
+            );
+          } 
           return (
             <Accordion
               key={item.date}
               date={item.date}
               steps={item.steps}
               sendData={getData}
+              itemState={false}
             />
           );
         })}

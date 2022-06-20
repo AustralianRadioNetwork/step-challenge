@@ -3,14 +3,15 @@ import React, { useState } from "react";
 // Styles
 import "./Accordion.scss";
 
-const Accordion = ({ date, steps, sendData}) => {
+const Accordion = ({ date, steps, sendData, itemState}) => {
 
   // sets limit to user input 
   const min = 0;
   const max = 50000;
 
+  console.log(itemState)
     
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(itemState);
 
   const [newSteps, setNewSteps] = useState(steps);
 
@@ -21,11 +22,9 @@ const Accordion = ({ date, steps, sendData}) => {
     setNewSteps(newValue)
     sendData({date:date, steps: parseInt(newValue)});
   }
-
-
-
+ 
   return (
-    <div className='accordion-item'>
+    <div className='accordion-item' id={new Date(date).getDate()}>
       <div className='accordion-title' onClick={() => setIsActive(!isActive)}>
         <h5 className='heading'>
           {new Date(date).toLocaleString("en-au", { month: "long" }) +
