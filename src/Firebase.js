@@ -14,13 +14,13 @@ import {getFirestore,query,getDocs,collection,where,addDoc,} from 'firebase/fire
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: 'AIzaSyAkVY4po1wPKcYBwuxksI7InpfakIkeaJY',
-    authDomain: 'step-challenge-f2745.firebaseapp.com',
-    projectId: 'step-challenge-f2745',
-    storageBucket: 'step-challenge-f2745.appspot.com',
-    messagingSenderId: '728304327432',
-    appId: '1:728304327432:web:ff26fbe777587e90ce6abd',
-    measurementId: 'G-0M2KBRMHHG'
+  apiKey: "AIzaSyAzcS8ksoJIxDsDq9uEHa8u2CPleqev_E4",
+  authDomain: "step-challenge-bd7df.firebaseapp.com",
+  projectId: "step-challenge-bd7df",
+  storageBucket: "step-challenge-bd7df.appspot.com",
+  messagingSenderId: "599843942471",
+  appId: "1:599843942471:web:d399e961308a95cebec162",
+  measurementId: "G-B1SX60ZPRQ"
 };
 
 // current Date 
